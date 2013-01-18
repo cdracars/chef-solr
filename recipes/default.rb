@@ -10,23 +10,23 @@
 
 execute "download-solr" do
   cwd "/usr/local/share"
-  command "wget http://www.gtlib.gatech.edu/pub/apache//lucene/solr/3.6.2/apache-solr-3.6.2.tgz"
+  command "wget http://www.gtlib.gatech.edu/pub/apache//lucene/solr/#{node[:solr][:version]}/apache-solr-#{node[:solr][:version]}.tgz"
   not_if do
-    File.exists?("/usr/local/share/apache-solr-3.6.2.tgz")
+    File.exists?("/usr/local/share/apache-solr-#{node[:solr][:version]}.tgz")
   end
 end
 
 execute "un-tar-solr" do
   cwd "/usr/local/share"
-  command "tar xvfz apache-solr-3.6.2.tgz"
+  command "tar xvfz apache-solr-#{node[:solr][:version]}.tgz"
   not_if do
-    File.exists?("/usr/local/share/apache-solr-3.6.2")
+    File.exists?("/usr/local/share/apache-solr-#{node[:solr][:version]}")
   end
 end
 
 execute "rename-solr-folder" do
   cwd "/usr/local/share"
-  command "mv apache-solr-3.6.2 apache-solr"
+  command "mv apache-solr-#{node[:solr][:version]} apache-solr"
   not_if do
     File.exists?("/usr/local/share/apache-solr")
   end
