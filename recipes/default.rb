@@ -10,7 +10,7 @@
 
 execute "download-solr" do
   cwd "/usr/local/share"
-  command "wget http://www.gtlib.gatech.edu/pub/apache//lucene/solr/3.6.1/apache-solr-3.6.2.tgz"
+  command "wget http://www.gtlib.gatech.edu/pub/apache//lucene/solr/3.6.2/apache-solr-3.6.2.tgz"
   not_if do
     File.exists?("/usr/local/share/apache-solr-3.6.2.tgz")
   end
