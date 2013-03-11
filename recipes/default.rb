@@ -8,9 +8,8 @@
 #
 # To-Do add attributes to abstract values
 
-execute "download-solr" do
-  cwd "/usr/local/share"
-  command "wget http://www.gtlib.gatech.edu/pub/apache//lucene/solr/#{node[:solr][:version]}/apache-solr-#{node[:solr][:version]}.tgz"
+remote_file "/usr/local/share/apache-solr-#{node[:solr][:version]}.tgz" do
+  source "http://www.gtlib.gatech.edu/pub/apache//lucene/solr/#{node[:solr][:version]}/apache-solr-#{node[:solr][:version]}.tgz"
   not_if do
     File.exists?("/usr/local/share/apache-solr-#{node[:solr][:version]}.tgz")
   end
